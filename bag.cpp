@@ -37,7 +37,51 @@ void Bag::fillGreedy(list<Item> items)
 
 }
 
-void Bag::fillOptimal(list<Item> items)
+void Bag::fillOptimal(list<Item> items, int const length)
 {
+    int table[this->m_room + 1][length + 1];
+    for (int i = 0; i < this->m_room + 1; i++)
+    {
+        for (int j = 0; j < length + 1; j++)
+        {
+            table[i][j] = 0;
 
+        }
+    }
+        int itemCounter = 1;
+    int largestValue;
+    for (auto const &item : items)
+    {
+        for (int i = 1; i <= m_room; i++)
+        {
+            if (item.getWeight() > i)
+            {
+                largestValue = 0;
+            }
+            else
+            {
+                largestValue = item.getValue() + table[itemCounter - 1][i - item.getValue()];
+            }
+
+            if (largestValue < table[itemCounter - 1][i])
+            {
+                largestValue = table[itemCounter - 1][i];
+            }
+            if (largestValue < table[itemCounter][i - 1])
+            {
+                largestValue = table[itemCounter][i - 1];
+            }
+            table[itemCounter][i] = largestValue;
+        }
+        itemCounter++;
+    }
+
+    for (int i = 0; i < this->m_room + 1; i++)
+    {
+        for (int j = 0; j < length + 1; j++)
+        {
+            cout << table[i][j];
+        }
+        cout << endl;
+    }
 }

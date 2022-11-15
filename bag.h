@@ -27,7 +27,7 @@ public:
     
     void add(Item item);
     void fillGreedy(list<Item> items);
-    void fillOptimal(list<Item> items);
+    void fillOptimal(list<Item> items, int const length);
     friend ostream &operator<<(ostream &os, const Bag &bag);
 };
 

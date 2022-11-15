@@ -2,6 +2,7 @@
 #include "bag.h"
 #include "item.h"
 
+
 using namespace std;
 
 int main()
@@ -9,14 +10,9 @@ int main()
     Bag bag(10);
     Item item(5, 4);
     Item item1(2, 1);
-    cout << item << endl;
-    cout << item1 << endl;
-    bag.add(item);
-    bag.add(item1);
-    bag.add(item);
-    bag.add(item1);   
-    bag.add(item);
-    bag.add(item1);
-    cout << bag << endl;
+    list<Item> items;
+    items.push_front(item);
+    items.push_front(item1);
+    bag.fillOptimal(items, 2);
     return 0;
 }
